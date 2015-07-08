@@ -1,27 +1,33 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace XPump
 {
 	public interface IXmlPipeline
 	{
-		IXmlPipelineMediator Source(string[] files);
-		IXmlPipelineMediator Source(FileInfo[] files);
+		IXmlPipelineMediator Source(IEnumerable<string> files);
+		IXmlPipelineMediator Source(IEnumerable<FileInfo> files);
 	}
 
 	public interface IXmlPipelineMediator
 	{
-		IXmlPipelineMediator Pipe(IXmlTranform transform);
+		IXmlPipelineMediator Pipe(IXmlTransform transform);
 
-		IxmlPipelineActuator Destination(string directory);
-		IxmlPipelineActuator Destination(DirectoryInfo directory);
+		IXmlPipelineActuator Destination(string directory);
+		IXmlPipelineActuator Destination(DirectoryInfo directory);
 
-		IxmlPipelineActuator Destination(string directory, Func<FileInfo, string> fileNameTransform);
-		IxmlPipelineActuator Destination(DirectoryInfo directory, Func<FileInfo, string> fileNameTransform);
+		IXmlPipelineActuator Destination(string directory, Func<FileInfo, string> fileNameTransform);
+		IXmlPipelineActuator Destination(DirectoryInfo directory, Func<FileInfo, string> fileNameTransform);
 	}
 
 	public interface IXmlPipelineActuator
 	{
 		void Pump();
+	}
+
+	public interface IXmlTransform
+	{
+		// todo: define necessary items
 	}
 }
