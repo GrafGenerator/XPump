@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 
 namespace XPump.Engine
 {
@@ -14,7 +15,7 @@ namespace XPump.Engine
 		public void Transform()
 		{
 			var sources = _pack.Sources.ToList();
-			var transformsList = _pack.Transforms.ToList();
+			var transforms = _pack.Transforms.ToList();
 			var destinations = _pack.Destinations.ToList();
 
 			foreach (var source in sources)
@@ -22,7 +23,7 @@ namespace XPump.Engine
 				var workDoc = source.GetDocument();
 				foreach (var transform in transforms)
 				{
-					var tmpDoc = transform.Transform(workDoc);
+					var tmpDoc = transform.Process(workDoc);
 					workDoc = tmpDoc;
 				}
 
