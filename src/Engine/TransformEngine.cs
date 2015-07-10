@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace XPump.Engine
@@ -17,6 +18,7 @@ namespace XPump.Engine
 			var sources = _pack.Sources.ToList();
 			var transforms = _pack.Transforms.ToList();
 			var destinations = _pack.Destinations.ToList();
+			var nameTransform = _pack.NameTransform ?? (Func<string, string>)(s => s);
 
 			foreach (var source in sources)
 			{
@@ -33,18 +35,20 @@ namespace XPump.Engine
 
 				foreach (var destination in destinations)
 				{
+					var name = nameTransform(source.Name);
+
 					var streamDestination = destination as IPipeStreamDestination;
 					if (streamDestination != null)
 					{
 						var tmpStream = new MemoryStream();
 						workDoc.Save(tmpStream);
-						streamDestination.Save(tmpStream, source.Name);
+						streamDestination.Save(tmpStream, name);
 					}
 
 					var customDestination = destination as IPipeCustomDestination;
 					if (customDestination != null)
 					{
-						customDestination.Save(workDoc, source.Name);
+						customDestination.Save(workDoc, name);
 					}
 				}
 			}

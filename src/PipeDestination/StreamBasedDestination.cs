@@ -3,7 +3,7 @@ using System.IO;
 
 namespace XPump.PipeDestination
 {
-	internal abstract class StreamBasedDestination: IPipeDestination
+	internal abstract class StreamBasedDestination: IPipeStreamDestination
 	{
 		protected bool _shouldCloseStream = true;
 

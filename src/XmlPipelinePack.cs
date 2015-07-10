@@ -21,6 +21,7 @@ namespace XPump
 		{
 			Sources = sources;
 			_transforms = new List<IXmlTransform>();
+			_destinations = new List<IPipeDestination>();
 		}
 
 		public void AppendTransform(IXmlTransform transform)
