@@ -45,6 +45,7 @@
     <Compile Include="PipeDestination\StreamBasedDestination.cs" />
     <Compile Include="PipeSource\FileSource.cs" />
     <Compile Include="PipeSource\PipeSource.cs" />
+    <Compile Include="Transforms\XsdValidateTransform.cs" />
     <Compile Include="XmlPipeline.cs" />
     <Compile Include="IXmlPipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

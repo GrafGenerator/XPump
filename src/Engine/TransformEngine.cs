@@ -23,9 +23,13 @@ namespace XPump.Engine
 				var workDoc = source.GetDocument();
 				foreach (var transform in transforms)
 				{
+					if (workDoc == null) break;
 					var tmpDoc = transform.Process(workDoc);
 					workDoc = tmpDoc;
 				}
+
+				// transforming failed
+				if (workDoc == null) continue;
 
 				foreach (var destination in destinations)
 				{
