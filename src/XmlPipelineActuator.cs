@@ -1,4 +1,5 @@
 ﻿using System;
+using XPump.Engine;
 
 namespace XPump
 {
@@ -13,7 +14,8 @@ namespace XPump
 
 		public void Pump()
 		{
-			throw new NotImplementedException();
+			var engine = new TransformEngine(_pack);
+			engine.Transform();
 		}
 	}
 }

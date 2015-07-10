@@ -7,8 +7,7 @@ namespace XPump
 {
 	public interface IXmlPipeline
 	{
-		IXmlPipelineMediator Source(IEnumerable<string> files);
-		IXmlPipelineMediator Source(IEnumerable<FileInfo> files);
+		IXmlPipelineMediator Source(IEnumerable<IPipeSource> sources);
 	}
 
 	public interface IXmlPipelineMediator
@@ -16,7 +15,7 @@ namespace XPump
 		IXmlPipelineMediator Pipe(IXmlTransform transform);
 
 		IXmlPipelineActuator Destination(IPipeDestination destination);
-		IXmlPipelineActuator Destination(IPipeDestination destination, Func<FileInfo, string> documentNameTransform);
+		IXmlPipelineActuator Destination(IPipeDestination destination, Func<string, string> documentNameTransform);
 	}
 
 	public interface IXmlPipelineActuator
@@ -26,8 +25,16 @@ namespace XPump
 
 	public interface IXmlTransform
 	{
-		// todo: define necessary items
+		XDocument Process(XDocument source);
 	}
+
+
+	public interface IPipeSource
+	{
+		string Name { get; }
+		XDocument GetDocument();
+	}
+
 
 	public interface IPipeDestination { }
 

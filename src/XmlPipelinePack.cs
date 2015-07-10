@@ -12,14 +12,14 @@ namespace XPump
 		private List<IXmlTransform> _transforms;
 		private List<IPipeDestination> _destinations;
 
-		public IEnumerable<FileInfo> Files;
+		public IEnumerable<IPipeSource> Sources;
 		public IEnumerable<IXmlTransform> Transforms { get { return _transforms; } }
 		public IEnumerable<IPipeDestination> Destinations { get { return _destinations; } }
 		public Func<string, string> NameTransform;
 
-		public XmlPipelinePack(IEnumerable<FileInfo> files)
+		public XmlPipelinePack(IEnumerable<IPipeSource> sources)
 		{
-			Files = files;
+			Sources = sources;
 			_transforms = new List<IXmlTransform>();
 		}
 

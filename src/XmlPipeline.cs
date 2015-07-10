@@ -6,14 +6,9 @@ namespace XPump
 {
 	public class XmlPipeline: IXmlPipeline
 	{
-		public IXmlPipelineMediator Source(IEnumerable<string> files)
+		public IXmlPipelineMediator Source(IEnumerable<IPipeSource> sources)
 		{
-			return Source(files.Select(path => new FileInfo(path)));
-		}
-
-		public IXmlPipelineMediator Source(IEnumerable<FileInfo> files)
-		{
-			var pack = new XmlPipelinePack(files);
+			var pack = new XmlPipelinePack(sources);
 
 			return new XmlPipelineMediator(pack);
 		}

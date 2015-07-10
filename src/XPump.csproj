@@ -39,9 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\TransformEngine.cs" />
     <Compile Include="PipeDestination\FolderDestination.cs" />
     <Compile Include="PipeDestination\PipeDestination.cs" />
     <Compile Include="PipeDestination\StreamBasedDestination.cs" />
+    <Compile Include="PipeSource\FileSource.cs" />
+    <Compile Include="PipeSource\PipeSource.cs" />
     <Compile Include="XmlPipeline.cs" />
     <Compile Include="IXmlPipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
