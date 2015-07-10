@@ -13,7 +13,9 @@ namespace XPump
 
 		public IXmlPipelineMediator Source(IEnumerable<FileInfo> files)
 		{
-			return new XmlPipelineMediator(files);
+			var pack = new XmlPipelinePack(files);
+
+			return new XmlPipelineMediator(pack);
 		}
 	}
 }

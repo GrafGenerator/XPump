@@ -39,11 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PipeDestination\FolderDestination.cs" />
+    <Compile Include="PipeDestination\PipeDestination.cs" />
+    <Compile Include="PipeDestination\StreamBasedDestination.cs" />
     <Compile Include="XmlPipeline.cs" />
     <Compile Include="IXmlPipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlPipelineActuator.cs" />
     <Compile Include="XmlPipelineMediator.cs" />
+    <Compile Include="XmlPipelinePack.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

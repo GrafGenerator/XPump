@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace XPump
 {
@@ -14,11 +15,8 @@ namespace XPump
 	{
 		IXmlPipelineMediator Pipe(IXmlTransform transform);
 
-		IXmlPipelineActuator Destination(string directory);
-		IXmlPipelineActuator Destination(DirectoryInfo directory);
-
-		IXmlPipelineActuator Destination(string directory, Func<FileInfo, string> fileNameTransform);
-		IXmlPipelineActuator Destination(DirectoryInfo directory, Func<FileInfo, string> fileNameTransform);
+		IXmlPipelineActuator Destination(IPipeDestination destination);
+		IXmlPipelineActuator Destination(IPipeDestination destination, Func<FileInfo, string> documentNameTransform);
 	}
 
 	public interface IXmlPipelineActuator
@@ -29,5 +27,17 @@ namespace XPump
 	public interface IXmlTransform
 	{
 		// todo: define necessary items
+	}
+
+	public interface IPipeDestination { }
+
+	public interface IPipeStreamDestination: IPipeDestination
+	{
+		void Save(Stream source, string name);
+	}
+
+	public interface IPipeCustomDestination : IPipeDestination
+	{
+		void Save(XDocument source, string name);
 	}
 }

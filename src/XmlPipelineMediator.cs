@@ -7,38 +7,32 @@ namespace XPump
 {
 	public class XmlPipelineMediator: IXmlPipelineMediator
 	{
-		private readonly IEnumerable<FileInfo> _files;
+		private readonly XmlPipelinePack _pack;
 
-		public XmlPipelineMediator(IEnumerable<FileInfo> files)
+		internal XmlPipelineMediator(XmlPipelinePack pack)
 		{
-			_files = files;
+			_pack = pack;
 		}
 
 
 
 		public IXmlPipelineMediator Pipe(IXmlTransform transform)
 		{
-			throw new NotImplementedException();
+			_pack.AppendTransform(transform);
+			return new XmlPipelineMediator(_pack);
 		}
 
-		public IXmlPipelineActuator Destination(string directory)
+		public IXmlPipelineActuator Destination(IPipeDestination destination)
 		{
-			return Destination(directory, null);
+			return Destination(destination, null);
 		}
 
-		public IXmlPipelineActuator Destination(DirectoryInfo directory)
+		public IXmlPipelineActuator Destination(IPipeDestination destination, Func<string, string> documentNameTransform)
 		{
-			return Destination(directory, null);
-		}
+			_pack.AppendDestination(destination);
+			_pack.NameTransform = documentNameTransform;
 
-		public IXmlPipelineActuator Destination(string directory, Func<FileInfo, string> fileNameTransform)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IXmlPipelineActuator Destination(DirectoryInfo directory, Func<FileInfo, string> fileNameTransform)
-		{
-			throw new NotImplementedException();
+			return new XmlPipelineActuator(_pack);
 		}
 	}
 }
