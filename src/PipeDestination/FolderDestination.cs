@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XPump.PipeDestination
+namespace XPump
 {
 	internal sealed class FolderDestination: StreamBasedDestination
 	{

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -13,14 +14,15 @@ namespace XPump.Engine
 			_pack = pack;
 		}
 
-		public void Transform()
+		public IPipeResult Transform(IPipeSource source)
 		{
-			var sources = _pack.Sources.ToList();
 			var transforms = _pack.Transforms.ToList();
 			var destinations = _pack.Destinations.ToList();
 			var nameTransform = _pack.NameTransform ?? (Func<string, string>)(s => s);
 
-			foreach (var source in sources)
+			var result = new PipeResult() { Success = true };
+
+			try
 			{
 				var workDoc = source.GetDocument();
 				foreach (var transform in transforms)
@@ -31,7 +33,13 @@ namespace XPump.Engine
 				}
 
 				// transforming failed
-				if (workDoc == null) continue;
+				if (workDoc == null)
+				{
+					result.Success = false;
+					return result;
+				}
+
+				result.Document = workDoc;
 
 				foreach (var destination in destinations)
 				{
@@ -43,7 +51,11 @@ namespace XPump.Engine
 						var tmpStream = new MemoryStream();
 						workDoc.Save(tmpStream);
 						tmpStream.Position = 0;
+
 						streamDestination.Save(tmpStream, name);
+
+						tmpStream.Position = 0;
+						result.Stream = tmpStream;
 					}
 
 					var customDestination = destination as IPipeCustomDestination;
@@ -53,6 +65,13 @@ namespace XPump.Engine
 					}
 				}
 			}
+			catch (Exception ex)
+			{
+				result.Exception = ex;
+				result.Success = false;
+			}
+
+			return result;
 		}
 
 

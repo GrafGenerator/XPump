@@ -43,6 +43,7 @@
     <Compile Include="PipeDestination\FolderDestination.cs" />
     <Compile Include="PipeDestination\PipeDestination.cs" />
     <Compile Include="PipeDestination\StreamBasedDestination.cs" />
+    <Compile Include="PipeResult.cs" />
     <Compile Include="PipeSource\FileSource.cs" />
     <Compile Include="PipeSource\PipeSource.cs" />
     <Compile Include="Transforms\XsdValidateTransform.cs" />

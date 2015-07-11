@@ -20,7 +20,7 @@ namespace XPump
 
 	public interface IXmlPipelineActuator
 	{
-		void Pump();
+		IEnumerable<IPipeResult> Pump(bool lazy = true);
 	}
 
 	public interface IXmlTransform
@@ -46,5 +46,15 @@ namespace XPump
 	public interface IPipeCustomDestination : IPipeDestination
 	{
 		void Save(XDocument source, string name);
+	}
+
+
+
+	public interface IPipeResult
+	{
+		XDocument Document { get; }
+		Stream Stream { get; }
+		Exception Exception { get; }
+		bool Success { get; }
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Linq;
 
-namespace XPump.PipeSource
+namespace XPump
 {
 	internal sealed class FileSource: IPipeSource
 	{

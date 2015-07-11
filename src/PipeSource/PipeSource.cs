@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace XPump.PipeSource
+namespace XPump
 {
 	public static class PipeSource
 	{

@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using System.Xml.Schema;
 
-namespace XPump.Transforms
+namespace XPump
 {
 	public sealed class XsdValidateTransform: IXmlTransform
 	{

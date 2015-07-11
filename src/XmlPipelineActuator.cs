@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using XPump.Engine;
 
 namespace XPump
@@ -12,10 +14,23 @@ namespace XPump
 			_pack = pack;
 		}
 
-		public void Pump()
+		public IEnumerable<IPipeResult> Pump(bool lazy = true)
+		{
+			return lazy ? PumpLazy() : PumpAll();
+		}
+
+		private IEnumerable<IPipeResult> PumpLazy()
 		{
 			var engine = new TransformEngine(_pack);
-			engine.Transform();
+
+			return _pack.Sources.Select(source => engine.Transform(source));
+		}
+
+		private IEnumerable<IPipeResult> PumpAll()
+		{
+			var engine = new TransformEngine(_pack);
+
+			return _pack.Sources.Select(source => engine.Transform(source)).ToList();
 		}
 	}
 }
