@@ -1,0 +1,4 @@
+<Root>
+  <Child1>c1</Child1>
+  <Child2 Att1="Att1 Default Value">c2</Child2>
+</Root>

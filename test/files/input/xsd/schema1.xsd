@@ -1,0 +1,18 @@
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+       <xsd:element name='Root'>
+        <xsd:complexType>
+         <xsd:sequence>
+          <xsd:element name='Child1' minOccurs='1' maxOccurs='1'/>
+          <xsd:element name='Child2' minOccurs='1' maxOccurs='1'>
+           <xsd:complexType>
+            <xsd:simpleContent>
+             <xsd:extension base='xsd:string'>
+              <xsd:attribute name='Att1' default='Att1 Default Value'/>
+             </xsd:extension>
+            </xsd:simpleContent>
+           </xsd:complexType>
+          </xsd:element>
+         </xsd:sequence>
+        </xsd:complexType>
+       </xsd:element>
+      </xsd:schema>
