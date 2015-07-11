@@ -42,6 +42,7 @@ namespace XPump.Engine
 					{
 						var tmpStream = new MemoryStream();
 						workDoc.Save(tmpStream);
+						tmpStream.Position = 0;
 						streamDestination.Save(tmpStream, name);
 					}
 
