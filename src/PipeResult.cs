@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Xml.Linq;
 using System.IO;
+using System.Xml.Linq;
 
 namespace XPump
 {
-	internal struct PipeResult: IPipeResult
-	{
-		public XDocument Document { get; set; }
-		public Stream Stream { get; set; }
-		public Exception Exception { get; set; }
-		public bool Success { get; set; }
-	}
+    internal class PipeResult : IPipeResult
+    {
+        public XDocument Document { get; set; }
+        public Stream Stream { get; set; }
+        public Exception Exception { get; set; }
+        public bool Success { get; set; }
+    }
 }
